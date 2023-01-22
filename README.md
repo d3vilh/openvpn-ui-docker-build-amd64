@@ -1,4 +1,3 @@
 # openvpn-ui-docker-build
-Scripts simplifying build of openvpn-ui for ARM32v7
+Scripts simplifying build of [openvpn-ui](https://github.com/d3vilh/openvpn-ui) for AMDx64 arch compatible with AWS EC2 Debian instance.
 
-Originally developed by [@bugsyb](https://github.com/bugsyb) for ARMv8, then modified to support ARM32v7 and [raspberry-gateway](https://github.com/d3vilh/raspberry-gateway) project by [@d3vilh](https://github.com/d3vilh) 
