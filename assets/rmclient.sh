@@ -19,7 +19,7 @@ echo 'Revoke certificate...'
 
 # Copy easy-rsa variables
 cd /usr/share/easy-rsa
-cp /etc/openvpn/config/easy-rsa.vars ./vars
+#cp /etc/openvpn/config/easy-rsa.vars ./vars
 printf "KEY_COUNTRY=$KEY_COUNTRY\n"
 
 # Revoke certificate
