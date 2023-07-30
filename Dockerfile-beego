@@ -1,19 +1,41 @@
+
+# Use the arm64v8/golang:1.17.13 base image
+# If doesnt build automatically run:
+# docker pull arm64v8/golang:1.17.13
+# for ARM32v7 use:
+# FROM arm32v7/golang:1.17.13
+# FROM arm64v8/golang:1.17.13
 FROM amd64/golang:1.17.13
+#FROM arm64v8/golang:1.19
+
 # Set the working directory to /tmp
 WORKDIR /tmp
 
-#RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o main .
+# Enable go modules
+#ENV GO111MODULE=on
+
+# Copy the go.mod and go.sum files to the container
+#COPY go.mod go.sum ./
+
+# Download the dependencies
+#RUN go mod download
 
 # Install the beego and bee packages
-RUN go get github.com/beego/beego
-RUN go get github.com/beego/bee
+RUN go get github.com/beego/beego/v2
+RUN go get github.com/beego/bee/v2
+#RUN go install github.com/beego/beego/v2@latest
+#RUN go install github.com/beego/bee/v2@latest
 
 # Install the mgo and jwt-go packages
 RUN go get gopkg.in/mgo.v2/bson
 RUN go get github.com/dgrijalva/jwt-go
+#RUN go install gopkg.in/mgo.v2/bson@latest
+#RUN go install github.com/dgrijalva/jwt-go@latest
 
 # Install the redigo package
 RUN go get github.com/garyburd/redigo/redis
+#RUN go install github.com/garyburd/redigo/redis@latest
 
 # Set the working directory to /
 WORKDIR /
+
