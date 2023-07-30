@@ -12,7 +12,9 @@ if [[ ! -f $DEST_FILE_PATH ]]; then
 fi
 
 # Fix index.txt by removing everything after pattern "/name=$1" in the line
-sed -i'.bak' "s/\/name=${1}.*//" /usr/share/easy-rsa/pki/index.txt
+# Fix for https://github.com/d3vilh/openvpn-ui/issues/5 by shuricksumy@github
+sed -i'.bak' "s/\/name=${1}\/.*//" /usr/share/easy-rsa/pki/index.txt
+
 export EASYRSA_BATCH=1 # see https://superuser.com/questions/1331293/easy-rsa-v3-execute-build-ca-and-gen-req-silently
 
 echo 'Revoke certificate...'
@@ -20,7 +22,6 @@ echo 'Revoke certificate...'
 # Copy easy-rsa variables
 cd /usr/share/easy-rsa
 #cp /etc/openvpn/config/easy-rsa.vars ./vars
-printf "KEY_COUNTRY=$KEY_COUNTRY\n"
 
 # Revoke certificate
 ./easyrsa revoke "$1"
